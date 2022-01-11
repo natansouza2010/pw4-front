@@ -1,3 +1,6 @@
+import './index.scss'; 
+
+
 type VehicleProps = {
     id: string,
     name: string,
@@ -8,14 +11,13 @@ type VehicleProps = {
 }
 
 
-
 export const VehicleCard = (props:VehicleProps) => {
     return(
-    <div>
+    <div className="card">
         <img className="image" src={props.urlImg} />
         <div className="container">
-            <h3>{props.brand} {props.name} {props.model}</h3>
-            <h2>{props.value}</h2>
+            <h4>{props.brand} {props.name} {props.model}</h4>
+            <h3>R$ {props.value}</h3>
             <div className="btn btn-primary dsmovie-btn">Editar</div>
         </div>
     </div>)

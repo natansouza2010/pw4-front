@@ -18,7 +18,28 @@ export const Home = () => {
     return (
         <>
             <Pagination/>,
-            <VehicleCard id={vehicle.id} name={vehicle.name} brand= {vehicle.brand} value={vehicle.value} model= {vehicle.model} urlImg={vehicle.urlImg} />
+            <div className="container">
+                <div className="row">
+                    <div className="col-sm-6 col-lg-4 col-xl-3 mb-3">
+                    <VehicleCard id={vehicle.id} name={vehicle.name} brand= {vehicle.brand} value={vehicle.value} model= {vehicle.model} urlImg={vehicle.urlImg} />
+                    </div>
+                    <div className="col-sm-6 col-lg-4 col-xl-3 mb-3">
+                    <VehicleCard id={vehicle.id} name={vehicle.name} brand= {vehicle.brand} value={vehicle.value} model= {vehicle.model} urlImg={vehicle.urlImg} />
+                    </div>
+                    <div className="col-sm-6 col-lg-4 col-xl-3 mb-3">
+                    <VehicleCard id={vehicle.id} name={vehicle.name} brand= {vehicle.brand} value={vehicle.value} model= {vehicle.model} urlImg={vehicle.urlImg} />
+                    </div>
+                    <div className="col-sm-6 col-lg-4 col-xl-3 mb-3">
+                    <VehicleCard id={vehicle.id} name={vehicle.name} brand= {vehicle.brand} value={vehicle.value} model= {vehicle.model} urlImg={vehicle.urlImg} />
+                    </div>
+                    <div className="col-sm-6 col-lg-4 col-xl-3 mb-3">
+                    <VehicleCard id={vehicle.id} name={vehicle.name} brand= {vehicle.brand} value={vehicle.value} model= {vehicle.model} urlImg={vehicle.urlImg} />
+                    </div>
+                    
+                </div>
+            </div>
+            
+            
         </>
         )
 }
