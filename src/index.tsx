@@ -13,14 +13,17 @@ import { Form } from './pages/Form/Form';
 import { Header } from './components/Header/Header';
 
 
+
+
 ReactDOM.render(
   <BrowserRouter>
   <Header/>
   <Routes>
-    <Route path="/veiculos" element={<Home/>} />
-    <Route path="/veiculos/form">
-      <Route path=":movieId" element={<Form />} />
+    <Route path="/" element={<Home/>} />
+    <Route path="/veiculos/edit">
+      <Route path=":id" element={<Form />} />
     </Route>
+    <Route path="/veiculos/add" element={<Form />}/>
   </Routes>
 </BrowserRouter>,
   document.getElementById('root')
