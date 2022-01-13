@@ -1,10 +1,12 @@
 
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { api } from '../../services/api';
 import './index.scss'
 
 export const Form = () => {
+    
 
     const {id} = useParams();
     
@@ -14,6 +16,7 @@ export const Form = () => {
     const [inputBrand, setInputBrand] = useState('');
     const [inputModel, setInputModel] = useState('');
     const [inputValue, setInputValue] = useState('');
+    
     
     useEffect(()=>{
         if(id){
@@ -43,14 +46,17 @@ export const Form = () => {
     const put = (event:any) =>{
         event.preventDefault();
         const data = {
-            id: id,
             name: inputName,
             brand: inputBrand,
             value: Number(inputValue),
             model: inputModel,
         
         }
-        console.log(data);
+       
+        api.put(`/veiculos/${id}`, data).then(response=>{
+            
+            console.log(response);
+        })
     }
 
     const post = (event:any) =>{
@@ -62,9 +68,18 @@ export const Form = () => {
             model: inputModel,
         
         }
-        console.log(data);
+        api.post("/veiculos/",data).then(response =>{
+            console.log(response);
+        })
+        
     }
          
+    const deleteData = (event:any)=>{
+        event.preventDefault();
+        api.delete(`/veiculos/${id}`).then(response=>{
+            console.log(response);
+        })
+    }
               
 
     return (
@@ -109,7 +124,10 @@ export const Form = () => {
 
                 <div className="btn-container">
                     {(id) ? 
-                        (<button onClick={put}type="submit" className="btn btn-primary">Salvar</button>)
+                        (
+                        <><button onClick={put} type="submit" className="btn btn-primary">Salvar</button>
+                        <button onClick={deleteData} type="submit" className="btn btn-danger">Deletar</button>
+                        </>)
 
                         : (<button onClick={post}type="submit" className="btn btn-primary">Salvar</button>) 
                     }

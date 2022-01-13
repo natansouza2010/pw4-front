@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Pagination } from "../../components/Pagination/Pagination"
 import { VehicleCard } from "../../components/VehicleCard/VehicleCard"
 import { api } from '../../services/api';
@@ -56,7 +57,10 @@ export const Home = () => {
                     })}
                     
                 </div>
-                <button onClick={printData}>Adicionar</button>
+                <Link to="/veiculos/add">
+                        <button className="btn btn-primary">Adicionar</button>
+                </Link>
+            
             </div>
             
             
