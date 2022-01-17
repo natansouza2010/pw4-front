@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@600&display=swap');
+
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 200px;
@@ -8,6 +11,14 @@
     }
     .container{
         padding: 10px;
+        h3,h4{
+            font-weight: 600;
+            font-family: Lexend, sans-serif;
+            color: #494D4B;
+        }
+        h4{
+            color: #808080;
+        }
     }
     
 }

@@ -1,9 +1,10 @@
 
 import {api} from '../../services/api';
 import { useState } from 'react';
-import {login} from '../../services/auth';
+import {login, setUserRole} from '../../services/auth';
 import './index.scss';
 import { useNavigate } from "react-router-dom";
+import jwt from 'jwt-decode'
 
 export const Login = () =>{
     
@@ -22,8 +23,10 @@ export const Login = () =>{
         }
         api.post("/user/login",data).then(response =>{
             if(response.data){
+                const token = response.data
+                const data:any = jwt(token)
+                setUserRole(data.role)
                 login(response.data);
-                
                 navigate('/');
             }
         })

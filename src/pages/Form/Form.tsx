@@ -4,18 +4,21 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { api } from '../../services/api';
 import './index.scss'
+import {getRole} from '../../services/auth'
 
 export const Form = () => {
-    
-
+    const user_role = getRole();
+   
     const {id} = useParams();
     
     const [name, setName] = useState('');
     const [model, setModel] = useState('');
+    const [image, setImage] = useState();
     const [inputName, setInputName] = useState('');
     const [inputBrand, setInputBrand] = useState('');
     const [inputModel, setInputModel] = useState('');
     const [inputValue, setInputValue] = useState('');
+    const [inputImage, setInputImage] = useState('');
     
     
     useEffect(()=>{
@@ -24,24 +27,17 @@ export const Form = () => {
                 const vehicle = response.data;
                 setName(vehicle.name);
                 setModel(vehicle.model);
+                setImage(vehicle.urlPhoto);
                 setInputName(vehicle.name);
                 setInputBrand(vehicle.brand);
                 setInputModel(vehicle.model);
                 setInputValue(vehicle.value);
+                setInputImage(vehicle.urlPhoto);
             })
         }
         
     },[id])
     
-
-    const vehicle = {
-        id: "1",
-        name: "Uno",
-        brand: "Fiat",
-        model: "2009",
-        value: 100000,
-        urlImg: "https://www.themoviedb.org/t/p/w533_and_h300_bestv2/jBJWaqoSCiARWtfV0GlqHrcdidd.jpg",
-    };
 
     const put = (event:any) =>{
         event.preventDefault();
@@ -50,6 +46,7 @@ export const Form = () => {
             brand: inputBrand,
             value: Number(inputValue),
             model: inputModel,
+            urlPhoto:inputImage,
         
         }
        
@@ -66,11 +63,11 @@ export const Form = () => {
             brand: inputBrand,
             value: Number(inputValue),
             model: inputModel,
-        
+            urlPhoto: inputImage,
         }
         api.post("/veiculos/",data).then(response =>{
             console.log(response);
-        })
+     })
         
     }
          
@@ -84,7 +81,7 @@ export const Form = () => {
 
     return (
     <div className="form-container">
-        <img className="imageCar" src={vehicle.urlImg} />
+        <img className="imageCar" src={image} />
         <div className="container">
             {(id) ? (
             <h3>{name} - {model} </h3>
@@ -108,22 +105,29 @@ export const Form = () => {
                 </div>
                 <div className="group-brand">
                     <label htmlFor="brand">Marca</label>
-                    <input id="brand" className="form-control" value={inputBrand} onChange={(e)=>{setInputBrand(e.target.value)}}/>
+                    <input id="brand" required className="form-control" value={inputBrand} onChange={(e)=>{setInputBrand(e.target.value)}}/>
                 </div>
 
                 <div className="group-model">
                     <label htmlFor="brand">Modelo</label>
-                    <input type="text" id="model" className="form-control"  value={inputModel} onChange={(e)=>{setInputModel(e.target.value)}}/>
+                    <input type="text" required id="model" className="form-control"  value={inputModel} onChange={(e)=>{setInputModel(e.target.value)}}/>
                 </div>
 
                 <div className="group-value">
                     <label htmlFor="brand">Valor</label>
-                    <input type="number" id="valor" className="form-control" value={inputValue} onChange={(e)=>{setInputValue(e.target.value)}}/>
+                    <input type="number" required id="valor" className="form-control" value={inputValue} onChange={(e)=>{setInputValue(e.target.value)}}/>
                 </div>
 
+                <div className="group-value">
+                    <label htmlFor="brand">URl Imagem</label>
+                    <input type="text" placeholder="URL da Imagem" id="valor" className="form-control"  value= {inputImage} onChange={(e)=>{setInputImage(e.target.value)}} />
+                </div>
 
+                
                 <div className="btn-container">
-                    {(id) ? 
+                {(user_role) === 'ROLE_ADMIN' &&
+                    <>
+                    {(id)  ? 
                         (
                         <><button onClick={put} type="submit" className="btn btn-primary">Salvar</button>
                         <button onClick={deleteData} type="submit" className="btn btn-danger">Deletar</button>
@@ -131,7 +135,8 @@ export const Form = () => {
 
                         : (<button onClick={post}type="submit" className="btn btn-primary">Salvar</button>) 
                     }
-                    
+                    </>
+                }
                     <Link to="/">
                         <button className="btn btn-primary">Cancelar</button>
                     </Link>
