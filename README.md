@@ -1,46 +1,60 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
+Para startar a aplicação : 
 
 ### `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📫 Tecnologias e Libs Utilizadas
 
-### `yarn build`
+1. React
+2. Typescript
+3. JWT Decode
+4. SASS
+5. Bootstrap
+6. React-Router-Dom
+7. Axios
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Components
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+A aplicação possui 2 Componentes que serão utilizados e reutilizados na aplicação:
 
-### `yarn eject`
+Header: possui apenas a navBar da página juntamente de uma estilização 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+VehicleCards: Será responsável por criar um novo Card de um veículo, para sua criação é necessário obter os dados atráves da propriedades `props`
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Pages
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Existem 3 Páginas em nossa aplicação, home, login e form
 
-## Learn More
+Login: é um formulário que coletará as credenciais, aos clicar no botão submit os dados serão validados na API e caso obtenha sucesso o Login será realizado, 
+um token será gerado, e o usuário irá para Home Page
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Home Page : Possui o Header e também os Cards dos Veículos, os dados são obtidos pelo requisição à API e renderizados e transmitidos nos Cards.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Form Page : Será coletados os dados para a criação de um novo Card Veículos
+
+Observações: 
+  Home page e Form Page, possui componentes que serão visiveis apenas para o admin e interações que apenas um usuário autenticado possa fazer
+
+
+## Services
+
+api.ts : O axios é responsável por fazer as requisições. todas as requisições será passado um header, contendo a informação `'Authorization'` no qual será armazenado o TOKEN,
+e durante a integração com a API o Token será validado a partir dessa informação. 
+
+auth.ts : O Token será armazenado no LocalStorage, juntamente da Role do Usuário, com essas informação conseguimos verificar se o usuário está autenticado e qual é a role pertencente. 
+
+
+## Render
+
+Index.tsx : Responsavel pela a criação das rotas do sistema, existem rotas que apenas usúarios autenticado consegue acessar. 
+
+
+
+
