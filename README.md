@@ -53,7 +53,7 @@ auth.ts : O Token será armazenado no LocalStorage, juntamente da Role do Usuár
 
 ## Render
 
-Index.tsx : Responsavel pela a criação das rotas do sistema, existem rotas que apenas usúarios autenticado consegue acessar. 
+Index.tsx : é criado as das rotas do sistema e a renderização dos elementos, existem rotas que apenas usúarios autenticados consegue acessar. 
 
 
 
